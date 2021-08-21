@@ -20,11 +20,17 @@ class CalendarAPIController extends Controller
     public function index()
     {
         $holidayCollection = HolidayCalendarResource::collection(Holiday::all());
-        $leaveCollection = LeaveCalendarResource::collection(Leave::all());
+        
+        $leaves = Leave::join("employee","employee.id","=","leave.employee_id")
+                        ->join("leave_type","leave_type.id","=","leave.leave_type_id");
+
+        $leaves = $leaves->select("leave.*", "employee.name as employee_name","leave_type.name as leave_type_name")
+                    ->orderBy("leave.created_at","DESC")
+                    ->get();
 
         $data = [
             'holidays' => $holidayCollection,
-            'leaves' => $leaveCollection
+            'leaves' => $leaves
         ];
         return response()->json($data);
     }

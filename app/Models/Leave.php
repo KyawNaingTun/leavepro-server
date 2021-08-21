@@ -12,4 +12,23 @@ class Leave extends Model
     protected $table = 'leave';
 
     protected $fillable = ['start_date', 'end_date', 'employee_id', 'leave_type_id', 'reason'];
+
+    /**
+     * Employee
+     *
+     * @return void
+     */
+    public function employee()
+    {
+        return $this->belongsToMany(Employee::class);
+    }
+    /**
+     * Leave Type
+     *
+     * @return void
+     */
+    public function leaveType()
+    {
+        return $this->belongsToMany(LeaveType::class);
+    }
 }

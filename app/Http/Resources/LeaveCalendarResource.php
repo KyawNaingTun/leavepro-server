@@ -15,9 +15,10 @@ class LeaveCalendarResource extends JsonResource
      */
     public function toArray($request)
     {
+        $employee = new EmployeeResource($this->whenLoaded('employee'));
         return [
             'id' => 'e'.$this->id,
-            'title' => "(#".$this->id.")".auth()->user()->name."'s leave",
+            'title' => "(#".$this->id.")".$employee['name']."'s leave",
             'startDate' => Str::of($this->start_date)->limit(10, ''),
             'endDate' => Str::of($this->end_date)->limit(10, ''),
             'classes' => 'purple',

@@ -19,7 +19,7 @@ class LeaveTypeResource extends JsonResource
             'text' => $this->name,
             'description' => $this->description,
             'days_per_year' => $this->days_per_year,
-            'created_at' => $this->created_at
+            'created_at' => $this->created_at->format('Y-m-d H:i:s')
         ];
     }
 }

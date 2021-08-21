@@ -22,8 +22,8 @@ class AuthAPIController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:20',
-            'department' => 'required|max:20',
-            'role' => 'required|max:20',
+            'department' => 'max:30',
+            'role' => 'max:30',
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);

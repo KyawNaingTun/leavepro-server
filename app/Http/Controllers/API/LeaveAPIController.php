@@ -29,7 +29,7 @@ class LeaveAPIController extends Controller
             $leaves = $leaves->where("leave.employee_id", $request->employee_id);
         }
 
-        return $leaves = $leaves->select("leave.*", "employee.name as employee_name","leave_type.name as leave_type_name")
+        return $leaves = $leaves->select("leave.*", "employee.name as employee_name","leave_type.name as leave_type_name", "leave_type.created_at as created_at,")
                     ->orderBy("leave.created_at","DESC")
                     ->get();
     }
