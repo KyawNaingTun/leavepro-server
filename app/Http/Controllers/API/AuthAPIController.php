@@ -22,16 +22,18 @@ class AuthAPIController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:20',
-            'department' => 'max:30',
-            'role' => 'max:30',
+            // 'department' => 'max:30',
+            // 'role' => 'max:30',
+            // 'phone' => 'max:20',
             'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
 
         $user = Employee::create([
             'name' => $request->name,
-            'name' => $request->name,
-            'name' => $request->name,
+            'department' => $request->department,
+            'role' => $request->role,
+            'phone' => $request->phone,
             'email' => $request->email,
             'password' => bcrypt($request->password)
         ]);
